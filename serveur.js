@@ -27,6 +27,7 @@ app.post("/api/player", function(req,res){
             prenom: req.body.prenom,
             style: req.body.style
         };
+
         connection.query(sql,value, function(err,result,fields){
             if(err){
                 console.log(err);
@@ -42,8 +43,26 @@ app.post("/api/player", function(req,res){
 //SELECT player
 app.get("/api/player", function(req,res){
     connection.connect(function(err){
-        connection.query("select * from player", function(err,result,fields){
+        connection.query('select * from player', function(err,result,fields){
             res.json(result);
+        });
+    });
+});
+
+app.delete("/api/player",(req,res) => {
+    console.log("Received", req.body);
+    connection.connect(function(err){
+        const sql = 'delete from player where id = ?';
+        const value = req.body.id;
+
+        connection.query(sql,value, function(err,result,fields){
+            if(err){
+                console.log(err);
+                res.send(503).end();
+            } else {
+                console.log("DELETE successful", result);
+                res.end();
+            }
         });
     });
 });
