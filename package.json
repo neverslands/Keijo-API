@@ -1,0 +1,23 @@
+{
+  "name": "keijonode",
+  "version": "1.0.0",
+  "description": "serveur node",
+  "main": "serveur.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql": "^2.17.1",
+    "nodemon": "^1.18.11"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon serveur.js"
+  },
+  "keywords": [
+    "node",
+    "serveur"
+  ],
+  "author": "Maxime",
+  "license": "ISC"
+}
