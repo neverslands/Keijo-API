@@ -49,11 +49,12 @@ app.get("/api/player", function(req,res){
     });
 });
 
-app.delete("/api/player",(req,res) => {
+app.delete("/api/player/:id",(req,res) => {
     console.log("Received", req.body);
     connection.connect(function(err){
         const sql = 'delete from player where id = ?';
-        const value = req.body.id;
+        //const value = req.body.id;
+        const value = req.params.id;
 
         connection.query(sql,value, function(err,result,fields){
             if(err){
@@ -65,6 +66,19 @@ app.delete("/api/player",(req,res) => {
             }
         });
     });
+
+    /*
+    connection.connect(function(err) {
+        if (err) throw err;
+        const sql = 'DELETE FROM player WHERE id = ?';
+        const value = req.param("id");
+
+        connection.query(sql,value, function(err,result,fields){
+            console.log("Number of records deleted: ", result.affectedRows);
+            res.end();
+        });
+    });
+    */
 });
 
 app.listen(1000);
